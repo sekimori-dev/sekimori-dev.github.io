@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+# Private design context, linked in from sekimori-internal for local design work.
+DESIGN.md
+PRODUCT.md
+.impeccable/

@@ -1,0 +1,1021 @@
+---
+import "../styles/global.css";
+
+const GITHUB_URL = "https://github.com/sekimori-dev/sekimori";
+const SEAL_GLYPH =
+  "M780 -72Q771 -18 753.0 4.0Q735 26 697 33Q684 18 674.0 2.0Q664 -14 658 -27Q606 5 564.0 65.0Q522 125 507 193Q487 114 444.0 70.0Q401 26 343.5 4.0Q286 -18 222 -31Q208 -24 216 -11Q264 6 303.0 28.5Q342 51 369.0 91.0Q396 131 408 199H295Q295 199 271.5 198.5Q248 198 219 195L208 235Q244 231 269.5 230.0Q295 229 295 229H412Q414 246 415.5 265.5Q417 285 417 307Q402 307 388.5 307.0Q375 307 363 307Q346 307 334.5 307.0Q323 307 320 307Q320 307 296.5 306.5Q273 306 244 303L233 343Q269 339 294.5 338.0Q320 337 320 337H376Q375 339 374.0 341.0Q373 343 373 345Q363 383 344.5 414.0Q326 445 303 459Q296 472 311 478Q344 476 375.0 467.0Q406 458 428.5 439.5Q451 421 455 392Q457 373 450.0 359.0Q443 345 431 337H506Q513 350 521.5 371.5Q530 393 537.5 416.5Q545 440 550 459Q552 467 552.5 473.0Q553 479 554 483Q538 486 538 502Q538 509 539.0 541.5Q540 574 541.0 619.5Q542 665 542 708Q542 747 540.0 773.0Q538 799 534 812Q531 819 535 823Q539 825 546 824Q564 819 595.5 806.0Q627 793 648 783H792Q801 783 803 789Q806 794 811.5 802.0Q817 810 821 817Q827 827 839 823Q850 820 867.0 812.0Q884 804 901.5 795.0Q919 786 929 780Q940 775 939.5 763.5Q939 752 927 746Q924 744 921.0 742.5Q918 741 916 739Q904 733 904 712V564Q904 477 905.0 391.0Q906 305 908.0 233.0Q910 161 911.0 114.0Q912 67 912 57Q912 5 884.5 -26.0Q857 -57 780 -72ZM106 -73Q82 -73 82 -51Q82 -47 83.0 -11.5Q84 24 85.5 84.5Q87 145 88.5 222.5Q90 300 91.0 389.0Q92 478 92 570Q92 654 91.0 703.5Q90 753 87.5 778.5Q85 804 81 814Q80 822 83 825Q87 829 93 826Q110 822 140.0 809.0Q170 796 194 785H337Q344 785 349 790Q354 798 359.0 806.0Q364 814 368 819Q375 827 386 823Q396 819 412.0 811.5Q428 804 443.5 796.0Q459 788 468 782Q478 776 477.5 766.0Q477 756 466 751Q463 750 460.5 748.5Q458 747 456 745Q445 738 445 722Q445 695 445.5 660.0Q446 625 447.0 592.0Q448 559 448.5 536.5Q449 514 449 512Q449 499 424.0 490.0Q399 481 371 481Q348 481 348 502V517H188V-41Q188 -55 162.5 -64.0Q137 -73 106 -73ZM780 55Q808 55 808 81V517H639V512Q639 502 621.0 493.5Q603 485 580 483Q584 482 597.0 475.5Q610 469 626.0 461.0Q642 453 655.0 446.5Q668 440 671 438Q677 435 673 425Q670 415 661 417Q652 420 647.5 418.5Q643 417 635 409Q619 393 593.0 373.5Q567 354 544 337H630Q642 337 648 346Q653 353 663.5 366.0Q674 379 678 384Q686 394 697 387Q706 382 719.0 370.5Q732 359 745.0 347.5Q758 336 763 329Q769 322 767.0 314.5Q765 307 758 307H522Q521 286 519.5 266.5Q518 247 515 229H649Q662 229 667 237Q672 244 684.0 259.5Q696 275 700 280Q709 290 719 283Q728 278 742.5 265.5Q757 253 771.0 240.5Q785 228 790 220Q796 213 794.0 206.0Q792 199 785 199H533Q568 155 626.0 123.0Q684 91 745 76Q738 72 731.5 67.0Q725 62 718 56Q734 55 750.5 55.0Q767 55 780 55ZM639 548H808V638H639ZM188 548H348V638H188ZM639 668H808V753H639ZM188 668H348V755H188Z";
+const GITHUB_MARK =
+  "M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z";
+
+const stations = [
+  { y: 180, label: "agent" },
+  { y: 360, label: "gmail.read" },
+  { y: 540, label: "関  checkpoint", checkpoint: true },
+  { y: 720, label: "jira.createIssue" },
+  { y: 880, label: "slack.post" },
+];
+
+const EXAMPLE_PROGRAM = `<span class="k">const</span> mails = <span class="k">await</span> gmail.search({ query: <span class="s">"label:incidents"</span> });
+
+<span class="k">for</span> (<span class="k">const</span> m <span class="k">of</span> mails.slice(<span class="n">0</span>, <span class="n">20</span>)) {
+  <span class="k">const</span> body = <span class="k">await</span> gmail.read({ id: m.id });
+  <span class="k">await</span> jira.createIssue({
+    project: <span class="s">"OPS"</span>,
+    summary: m.subject,
+    description: body,
+  });
+}
+
+<span class="k">await</span> slack.post({
+  channel: <span class="s">"#ops"</span>,
+  text: <span class="s">\`\${mails.length} incidents filed\`</span>,
+});`;
+
+const traffic = Array.from({ length: 13 }, (_, i) => -520 + i * 170);
+
+const planLines = [
+  { up: "M 110 40 L 150 130", down: "M 150 130 L 185 210" },
+  { up: "M 190 40 L 230 130", down: "M 230 130 L 265 210" },
+  { up: "M 270 40 L 310 130", down: "M 310 130 L 345 210" },
+  { up: "M 350 40 L 390 130", down: "M 390 130 L 425 210" },
+  { up: "M 430 40 L 470 130", down: "M 470 130 L 540 280" },
+];
+
+const ticks = Array.from({ length: 16 }, (_, i) => {
+  const minutes = 9 * 60 + i * 5;
+  const label = `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
+  return { x: 50 + i * 100, label: i % 2 === 0 ? label : "" };
+});
+
+const passing = [
+  { d: "M 180 180 L 330 540 L 470 880", delay: 0 },
+  { d: "M 520 180 L 660 540 L 760 880", delay: 2.6 },
+  { d: "M 1300 180 L 1420 540 L 1520 880", delay: 5.1 },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sekimori (関守): agent gating, solved</title>
+    <meta
+      name="description"
+      content="Sekimori is the checkpoint between AI agents and their tools. It reads the program an agent wants to run, shows the plan, and lets it pass on one approval."
+    />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/jost.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/zen-old-mincho-400.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <!--
+      THESIS: The agent's program is a train diagram, drawn and sealed before anything runs. Refuses the dark hero plus terminal screenshot plus feature-card grid that every MCP gateway ships.
+      OWN-WORLD: White paper, sumi-black hairline ruling, station names in small Jost, light-red (beni) special-service lines, one square red seal. Thin Jost, Zen Old Mincho kanji. No cards, no shadows.
+      STORY: The visitor learns Sekimori approves whole agent programs once, blocks untrusted data from reaching sensitive actions, keeps data on their side, and follows the build on GitHub.
+      FIRST VIEWPORT: "Sekimori 関守" large, top left of centre, then "Agent gating, solved." A faint operating diagram drifts behind; one red line halts at the checkpoint row until a seal presses. The GitHub action sits under the lede.
+      FORM: Operating Diagram, position 6 of the grounded list, seed key 8453bfa2.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <svg class="defs" aria-hidden="true">
+      <symbol id="seal-mark" viewBox="0 0 512 512">
+        <rect width="512" height="512" rx="10" fill="#e8606a" />
+        <rect x="44" y="44" width="424" height="424" fill="none" stroke="#fff" stroke-width="10" />
+        <path fill="#fff" transform="translate(256 256) scale(0.34 -0.34) translate(-510 -377)" d={SEAL_GLYPH} />
+      </symbol>
+    </svg>
+    <header class="hero">
+      <div class="hero-stage" aria-hidden="true">
+      <svg class="hero-diagram" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+        <g class="ticks">
+          {
+            ticks.map((t) => (
+              <g>
+                <line x1={t.x} y1="64" x2={t.x} y2={t.label ? 76 : 71} />
+                {t.label && <text x={t.x} y="54" text-anchor="middle">{t.label}</text>}
+              </g>
+            ))
+          }
+        </g>
+        <g class="traffic">
+          {traffic.map((x) => <line x1={x} y1="0" x2={x + 520} y2="1000" />)}
+        </g>
+        <g class="stations">
+          {
+            stations.map((s) => (
+              <g class:list={["station", { checkpoint: s.checkpoint }]}>
+                <line x1="0" y1={s.y} x2="1600" y2={s.y} />
+                <text x="1560" y={s.y - 10} text-anchor="end">{s.label}</text>
+              </g>
+            ))
+          }
+        </g>
+        <g class="passing">
+          {passing.map((p) => <path d={p.d} pathLength="1" style={`animation-delay:${p.delay}s`} />)}
+        </g>
+        <g class="held">
+          <text class="train-no" x="836" y="174">P-7F3A</text>
+          <text class="m-label" x="1110" y="526">関 checkpoint</text>
+          <path class="held-in" d="M 820 180 L 970 540" pathLength="1" />
+          <path class="held-wait" d="M 970 540 L 1090 540" />
+          <path class="held-out" d="M 1090 540 L 1260 880" pathLength="1" />
+          <g transform="translate(1030 540)">
+            <g class="seal">
+              <use href="#seal-mark" x="-28" y="-28" width="56" height="56" />
+            </g>
+          </g>
+        </g>
+      </svg>
+      </div>
+
+      <div class="hero-copy">
+        <h1>
+          <span class="wordmark">Sekimori</span>
+          <span class="kanji" lang="ja">関守</span>
+        </h1>
+        <p class="tagline">Agent gating, solved.</p>
+        <p class="lede">
+          The checkpoint between your AI agents and the tools they use. Sekimori reads the program an agent wants to
+          run, shows you the plan, and lets it pass on one seal.
+        </p>
+        <div class="actions">
+          <a class="button" href={GITHUB_URL}>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d={GITHUB_MARK} /></svg>
+            Follow the build on GitHub
+          </a>
+          <a class="quiet-link" href="#demo">
+            Watch a program pass
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="hero-meta">
+        <span lang="ja">関守</span> <span>keeper of the checkpoint</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>Pre-release · MIT-licensed core</span>
+      </p>
+    </header>
+
+    <main>
+      <section id="demo" class="demo" data-state="planned">
+        <div class="section-head">
+          <h2>Approve the program, not forty-two calls.</h2>
+          <p>
+            In code mode an agent writes a short program against your tools instead of calling them one by one.
+            Sekimori parses that program before it runs, draws the plan, and asks you once.
+          </p>
+        </div>
+
+        <div class="demo-grid">
+          <figure class="code">
+            <figcaption>Example program written by an agent</figcaption>
+            <pre><code><Fragment set:html={EXAMPLE_PROGRAM} /></code></pre>
+          </figure>
+
+          <div class="plan">
+            <svg class="plan-diagram" viewBox="0 0 640 300" aria-hidden="true">
+              <g class="plan-stations">
+                <line x1="0" y1="40" x2="640" y2="40" /><text x="0" y="30">gmail</text>
+                <line class="cp" x1="0" y1="130" x2="640" y2="130" /><text class="cp" x="0" y="120">関 checkpoint</text>
+                <line x1="0" y1="210" x2="640" y2="210" /><text x="0" y="200">jira</text>
+                <line x1="0" y1="280" x2="640" y2="280" /><text x="0" y="270">slack</text>
+              </g>
+              <g class="plan-planned">
+                {planLines.map((l) => (<><path class="up" d={l.up} /><path class="down" d={l.down} /></>))}
+              </g>
+              <g class="plan-ink">
+                {planLines.map((l) => (<><path class="up" d={l.up} pathLength="1" /><path class="down" d={l.down} pathLength="1" /></>))}
+              </g>
+              <g transform="translate(590 130)">
+                <g class="plan-seal">
+                  <use href="#seal-mark" x="-22" y="-22" width="44" height="44" />
+                </g>
+              </g>
+            </svg>
+
+            <table class="calls">
+              <caption>Extracted plan</caption>
+              <tbody>
+                <tr><th scope="row">C-01</th><td><code>gmail.search</code></td><td>×1</td><td>reads mail list</td><td class="flag">untrusted</td></tr>
+                <tr><th scope="row">C-02</th><td><code>gmail.read</code></td><td>×20</td><td>reads mail bodies</td><td class="flag">untrusted</td></tr>
+                <tr><th scope="row">C-03</th><td><code>jira.createIssue</code></td><td>×20</td><td>writes to OPS</td><td class="flag">sensitive</td></tr>
+                <tr><th scope="row">C-04</th><td><code>slack.post</code></td><td>×1</td><td>posts to #ops</td><td class="flag">sensitive</td></tr>
+              </tbody>
+            </table>
+
+            <div class="verdict" aria-live="polite">
+              <p class="when-planned">Untrusted mail content reaches two sensitive actions. One seal required.</p>
+              <p class="when-approved">Sealed. All 42 calls ran inside the approved plan.</p>
+            </div>
+
+            <div class="demo-actions">
+              <button type="button" class="button seal-button" data-action="seal">
+                <svg class="seal-chip" aria-hidden="true"><use href="#seal-mark" width="100%" height="100%" /></svg>
+                Press seal
+              </button>
+              <button type="button" class="quiet-link" data-action="reset">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rules" class="rules">
+        <div class="section-head">
+          <h2>Three rules at the checkpoint.</h2>
+        </div>
+        <dl class="rule-list">
+          <div class="rule">
+            <dt>Program approval</dt>
+            <dd class="what">
+              The gateway reads the code before it runs and extracts every tool it will touch. You approve the plan,
+              once.
+            </dd>
+            <dd class="instead">Instead of: forty-two prompts, or none at all.</dd>
+          </div>
+          <div class="rule">
+            <dt>Data-flow control</dt>
+            <dd class="what">
+              Once a program reads untrusted data, such as an email body, a web page or tool output, every sensitive
+              action after it needs your seal.
+            </dd>
+            <dd class="instead">Stops: the email that tells your agent to forward the inbox.</dd>
+          </div>
+          <div class="rule">
+            <dt>Tegata <span lang="ja">手形</span></dt>
+            <dd class="what">
+              A standing pass per agent: "may read mail and file issues in OPS". Programs inside the pass run without
+              a human.
+            </dd>
+            <dd class="instead">Keeps: approvals rare enough that nobody clicks through blindly.</dd>
+          </div>
+        </dl>
+        <p class="also">
+          Also at the checkpoint: Cedar policies on every call, secrets injected at the boundary and never inside the
+          sandbox, and an audit trail with every call numbered.
+        </p>
+      </section>
+
+      <section id="data" class="line">
+        <div class="section-head">
+          <h2>Your data stays on your side of the line.</h2>
+          <p>
+            You run the gateway on your own machine or infrastructure. Sekimori Cloud, the next milestone, will manage
+            it from the other side, and the connection will only ever go out.
+          </p>
+        </div>
+        <div class="sides">
+          <div class="side">
+            <h3>Your infrastructure</h3>
+            <ul>
+              <li>Sekimori gateway, open source</li>
+              <li>Agent code and its sandbox</li>
+              <li>Credentials and per-user OAuth tokens</li>
+              <li>Raw tool results</li>
+            </ul>
+          </div>
+          <div class="divide" aria-hidden="true">
+            <span class="divide-label">outbound only</span>
+          </div>
+          <div class="side">
+            <h3>Sekimori Cloud <span class="planned">planned</span></h3>
+            <ul>
+              <li>Policies and tegata</li>
+              <li>Approvals in the web and Slack</li>
+              <li>Audit history, redacted</li>
+              <li>Teams and billing</li>
+            </ul>
+          </div>
+        </div>
+        <p class="never">Never crosses the line: credentials, tokens, raw results, or the string values inside agent code.</p>
+      </section>
+
+      <section id="v1" class="honest">
+        <div class="section-head">
+          <h2>What v1 guarantees, and what it doesn't yet.</h2>
+        </div>
+        <div class="ledger">
+          <div>
+            <h3>Guaranteed</h3>
+            <ul>
+              <li>Every tool call is checked against policy with its real arguments. An approval never overrides a deny.</li>
+              <li>After any untrusted read, no sensitive action runs without a seal or a matching tegata.</li>
+              <li>Tools nobody has classified count as untrusted and sensitive. It fails closed.</li>
+              <li>Secrets never enter the sandbox.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Not yet</h3>
+            <ul>
+              <li>
+                Per-value tracking. v1 flags the whole program after one untrusted read; precise tracking arrives with
+                Sekimori's restricted interpreter.
+              </li>
+              <li>A model gateway. Routing and budgets for LLM traffic come later; run it next to LiteLLM today.</li>
+              <li>Sekimori Cloud. Approvals in the web and Slack, policy distribution and audit history are the next milestone.</li>
+              <li>A hosted runtime. The gateway always runs on your side.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="follow" class="close">
+      <p class="close-kanji" lang="ja" aria-hidden="true">関守</p>
+      <h2>Sekimori is pre-release and built in the open.</h2>
+      <a class="button" href={GITHUB_URL}>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d={GITHUB_MARK} /></svg>
+        Follow the build on GitHub
+      </a>
+      <p class="fine">Sekimori · MIT-licensed core · © 2026</p>
+    </footer>
+
+    <script>
+      const demo = document.querySelector<HTMLElement>("#demo");
+      demo?.addEventListener("click", (event) => {
+        const action = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-action]")?.dataset.action;
+        if (action === "seal") demo.dataset.state = "approved";
+        if (action === "reset") demo.dataset.state = "planned";
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--gutter);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .hero-stage {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero-diagram {
+    display: block;
+    width: 100%;
+    height: 100%;
+    mask-image: radial-gradient(ellipse 46% 42% at 24% 46%, transparent 0 35%, #000 100%);
+  }
+
+  .traffic line {
+    stroke: #f1f1f1;
+    stroke-width: 1;
+  }
+
+  .ticks text,
+  .train-no,
+  .m-label,
+  .station text,
+  .plan-stations text,
+  figcaption,
+  .calls caption,
+  .calls th,
+  .calls .flag,
+  .divide-label,
+  .fine {
+    font-weight: 400;
+  }
+
+  .ticks line {
+    stroke: var(--hair-strong);
+  }
+  .ticks text,
+  .train-no,
+  .m-label {
+    font-size: 12px;
+    fill: var(--ink-3);
+  }
+  .train-no {
+    font-size: 13px;
+    fill: var(--beni-ink);
+  }
+  .m-label {
+    display: none;
+    fill: var(--beni-ink);
+  }
+
+  .station line {
+    stroke: var(--hair);
+    stroke-width: 1;
+  }
+  .station text,
+  .plan-stations text {
+    font-size: 13px;
+    fill: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+  .station.checkpoint line {
+    stroke: var(--beni);
+    stroke-dasharray: 2 6;
+  }
+  .station.checkpoint text {
+    fill: var(--beni-ink);
+  }
+
+  .passing path {
+    fill: none;
+    stroke: #b9b9b9;
+    stroke-width: 1.2;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: pass 7.5s var(--ease-out) infinite;
+  }
+  @keyframes pass {
+    0% { stroke-dashoffset: 1; opacity: 1; }
+    45% { stroke-dashoffset: 0; opacity: 1; }
+    80% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  .held path {
+    fill: none;
+    stroke: var(--beni);
+    stroke-width: 1.6;
+  }
+  .held-in,
+  .held-out {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  .held-in { animation: held-in 10s var(--ease-out) -3s infinite; }
+  .held-wait {
+    stroke-dasharray: 3 5;
+    opacity: 0;
+    animation: held-wait 10s linear -3s infinite;
+  }
+  .held-out { animation: held-out 10s var(--ease-out) -3s infinite; }
+  .seal {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: seal 10s var(--ease-out) -3s infinite;
+  }
+
+  @keyframes held-in {
+    0% { stroke-dashoffset: 1; opacity: 1; }
+    22% { stroke-dashoffset: 0; }
+    90% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  @keyframes held-wait {
+    0%, 22% { opacity: 0; stroke-dashoffset: 0; }
+    24% { opacity: 1; }
+    54% { opacity: 1; stroke-dashoffset: -40; }
+    90% { opacity: 1; }
+    100% { opacity: 0; stroke-dashoffset: -64; }
+  }
+  @keyframes seal {
+    0%, 50% { opacity: 0; transform: scale(1.5) rotate(-4deg); }
+    55% { opacity: 1; transform: scale(1) rotate(-4deg); }
+    90% { opacity: 1; transform: scale(1) rotate(-4deg); }
+    100% { opacity: 0; transform: scale(1) rotate(-4deg); }
+  }
+  @keyframes held-out {
+    0%, 56% { stroke-dashoffset: 1; opacity: 1; }
+    78% { stroke-dashoffset: 0; }
+    90% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .passing path,
+    .held-in,
+    .held-out { stroke-dashoffset: 0; opacity: 1; animation: none; }
+    .held-wait,
+    .seal { opacity: 1; animation: none; }
+  }
+
+  .hero-copy {
+    align-self: center;
+    max-width: 40rem;
+    padding-top: 4rem;
+  }
+
+  h1 {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.2em 0.45em;
+    font-size: clamp(3.6rem, 10vw, 6rem);
+    font-weight: 200;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+  .kanji {
+    font-family: var(--mincho);
+    font-weight: 400;
+    font-size: 0.62em;
+    letter-spacing: 0.08em;
+    color: var(--beni);
+  }
+
+  .tagline {
+    margin-top: 1.4rem;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    margin-top: 1.25rem;
+    max-width: 33rem;
+    color: var(--ink-2);
+    font-size: 1.125rem;
+  }
+
+  .actions {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1.35rem;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+  }
+  .button svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    fill: currentColor;
+  }
+  .button:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .quiet-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink-2);
+    font: inherit;
+    font-size: 1rem;
+    text-decoration: underline;
+    text-decoration-color: var(--hair-strong);
+    text-underline-offset: 0.35em;
+    cursor: pointer;
+    transition: color 0.3s var(--ease-out), text-decoration-color 0.3s var(--ease-out);
+  }
+  .quiet-link svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.2;
+  }
+  .quiet-link:hover {
+    color: var(--ink);
+    text-decoration-color: var(--beni);
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+  .hero-meta [lang="ja"] {
+    font-family: var(--mincho);
+    color: var(--beni-ink);
+  }
+  .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--hair-strong);
+  }
+
+  main > section {
+    padding: var(--space-section) var(--gutter) 0;
+    max-width: 82rem;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 44rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .section-head h2 {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  }
+  .section-head p {
+    color: var(--ink-2);
+    font-size: 1.125rem;
+    max-width: 38rem;
+  }
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .code {
+    margin: 0;
+    border-top: 1px solid var(--ink);
+  }
+  figcaption,
+  .calls caption {
+    padding: 0.8rem 0;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    text-align: left;
+  }
+  pre {
+    margin: 0;
+    padding: 1.25rem 0 0;
+    overflow-x: auto;
+    font-size: 0.8125rem;
+    line-height: 1.75;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .k { color: var(--ink-3); }
+  .s { color: var(--beni-ink); }
+  .n { color: var(--ink-2); }
+
+  .plan {
+    border-top: 1px solid var(--ink);
+    padding-top: 1.25rem;
+  }
+
+  .plan-diagram {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .plan-stations line {
+    stroke: var(--hair);
+  }
+  .plan-stations text {
+    font-size: 15px;
+  }
+  .plan-stations .cp {
+    stroke: var(--beni);
+    stroke-dasharray: 2 5;
+    fill: var(--beni-ink);
+  }
+  .plan-planned path,
+  .plan-ink path {
+    fill: none;
+    stroke-width: 1.4;
+  }
+  .plan-planned path {
+    stroke-dasharray: 3 4;
+  }
+  .plan-planned .up {
+    stroke: var(--hair-strong);
+  }
+  .plan-planned .down {
+    stroke: #f2b5ba;
+  }
+  .plan-ink path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.9s var(--ease-out);
+  }
+  .plan-ink .up {
+    stroke: var(--ink);
+  }
+  .plan-ink .down {
+    stroke: var(--beni);
+    transition-delay: 0.45s;
+  }
+  .plan-seal {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(1.5) rotate(-4deg);
+    transition: opacity 0.3s var(--ease-out) 0.25s, transform 0.55s var(--ease-out) 0.25s;
+  }
+
+  .demo[data-state="approved"] .plan-ink path {
+    stroke-dashoffset: 0;
+  }
+  .demo[data-state="approved"] .plan-seal {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+
+  .calls {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .calls caption {
+    padding-top: 0;
+  }
+  .calls tr {
+    border-top: 1px solid var(--hair);
+  }
+  .calls tr:last-child {
+    border-bottom: 1px solid var(--hair);
+  }
+  .calls th,
+  .calls td {
+    padding: 0.7rem 0.75rem 0.7rem 0;
+    text-align: left;
+    vertical-align: baseline;
+    font-weight: 300;
+  }
+  .calls th {
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+  .calls code {
+    font-size: inherit;
+  }
+  .calls .flag {
+    font-size: 0.75rem;
+    color: var(--beni-ink);
+    text-align: right;
+    padding-right: 0;
+  }
+
+  .verdict {
+    margin-top: 1.5rem;
+    min-height: 3.4em;
+    font-size: 1.0625rem;
+  }
+  .when-approved,
+  .demo[data-state="approved"] .when-planned {
+    display: none;
+  }
+  .demo[data-state="approved"] .when-approved {
+    display: block;
+    color: var(--beni-ink);
+  }
+
+  .demo-actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .seal-chip {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .demo[data-state="approved"] .seal-button {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .rule-list {
+    margin: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .rule {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 1rem 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .rule dt {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .rule dt [lang="ja"] {
+    font-family: var(--mincho);
+    color: var(--beni);
+    font-size: 0.8em;
+    margin-left: 0.3em;
+  }
+  .rule dd {
+    margin: 0;
+    max-width: 34rem;
+  }
+  .rule .instead {
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  .also {
+    margin-top: 2rem;
+    max-width: 44rem;
+    color: var(--ink-2);
+  }
+
+  .sides {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--hair);
+  }
+  .side {
+    padding: 2rem 0 2.25rem;
+  }
+  .side:last-child {
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+  }
+  .side h3,
+  .ledger h3 {
+    font-size: 1.375rem;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+  }
+  .planned {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    vertical-align: 0.2em;
+  }
+  .side ul,
+  .ledger ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .side li {
+    color: var(--ink-2);
+  }
+  .divide {
+    position: relative;
+    width: 1px;
+    margin-left: clamp(1.5rem, 5vw, 4rem);
+    background: repeating-linear-gradient(to bottom, var(--beni) 0 2px, transparent 2px 7px);
+  }
+  .divide-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    padding: 0.4rem 0;
+    background: var(--paper);
+    font-size: 0.75rem;
+    color: var(--beni-ink);
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.08em;
+  }
+  .never {
+    margin-top: 1.5rem;
+    color: var(--ink-2);
+    max-width: 44rem;
+  }
+
+  .ledger {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 6vw, 6rem);
+    border-top: 1px solid var(--ink);
+    padding-top: 2rem;
+  }
+  .ledger li {
+    padding-left: 1.4rem;
+    position: relative;
+    max-width: 34rem;
+  }
+  .ledger li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.6rem;
+    height: 1px;
+    background: var(--ink);
+  }
+  .ledger > div:last-child li::before {
+    background: var(--beni);
+  }
+  .ledger > div:last-child li {
+    color: var(--ink-2);
+  }
+
+  .close {
+    display: grid;
+    justify-items: start;
+    gap: 2rem;
+    max-width: 82rem;
+    margin: 0 auto;
+    padding: var(--space-section) var(--gutter) 3rem;
+  }
+  .close-kanji {
+    font-family: var(--mincho);
+    font-size: clamp(4rem, 12vw, 7.5rem);
+    line-height: 1;
+    color: var(--beni);
+    letter-spacing: 0.1em;
+  }
+  .close h2 {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    max-width: 30ch;
+  }
+  .fine {
+    margin-top: 4rem;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 60rem) {
+    .demo-grid,
+    .ledger {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .rule {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.6rem;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .hero {
+      grid-template-rows: auto auto auto;
+    }
+    .hero-copy {
+      order: 1;
+      padding-top: 3rem;
+    }
+    .hero-stage {
+      order: 2;
+      position: relative;
+      inset: auto;
+      z-index: 0;
+      height: 96vw;
+      margin: 1rem calc(-1 * var(--gutter)) 1rem;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent);
+    }
+    .hero-diagram {
+      position: absolute;
+      width: 296vw;
+      height: 185vw;
+      left: -140.7vw;
+      top: -55.6vw;
+      mask-image: none;
+    }
+    .m-label {
+      display: block;
+      font-size: 22px;
+    }
+    .train-no {
+      font-size: 20px;
+    }
+    .plan-stations text {
+      font-size: 26px;
+    }
+    .hero-meta {
+      order: 3;
+    }
+    .sides {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .side:last-child {
+      padding-left: 0;
+    }
+    .divide {
+      width: auto;
+      height: 1px;
+      margin: 0;
+      background: repeating-linear-gradient(to right, var(--beni) 0 2px, transparent 2px 7px);
+    }
+    .divide-label {
+      writing-mode: horizontal-tb;
+      padding: 0 0.6rem;
+    }
+    .calls td:nth-child(4) {
+      display: none;
+    }
+  }
+</style>
