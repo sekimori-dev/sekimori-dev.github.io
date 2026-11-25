@@ -134,8 +134,9 @@ const passing = [
         </h1>
         <p class="tagline">Agent gating, solved.</p>
         <p class="lede">
-          The checkpoint between your AI agents and the tools they use. Sekimori reads the program an agent wants to
-          run, shows you the plan, and lets it pass on one seal.
+          The checkpoint between your AI agents and the tools they use. Sekimori decides what an agent may do, by
+          reading its program and letting it pass on one seal, and what the model may read, by keeping confidential
+          data out of its context.
         </p>
         <div class="actions">
           <a class="button" href={GITHUB_URL}>
@@ -157,6 +158,34 @@ const passing = [
     </header>
 
     <main>
+      <section id="how" class="how">
+        <div class="section-head">
+          <h2>How a program passes the checkpoint.</h2>
+        </div>
+        <ol class="route">
+          <li>
+            <h3>The agent writes a program</h3>
+            <p>Not forty-two tool calls: one short TypeScript program against a typed API of your MCP servers.</p>
+          </li>
+          <li>
+            <h3>Sekimori reads it first</h3>
+            <p>Before anything runs, it extracts every tool the program will touch and draws the plan.</p>
+          </li>
+          <li class="cp">
+            <h3>Policy, tegata or your seal</h3>
+            <p>Cedar checks every call. A tegata lets routine programs through; the rest waits for one seal.</p>
+          </li>
+          <li>
+            <h3>It runs in a sandbox</h3>
+            <p>Credentials stay at the boundary. Every call is checked again with its real arguments.</p>
+          </li>
+          <li class="cp">
+            <h3>The model gets the result</h3>
+            <p>Computed results go back. Raw confidential values stay behind, withheld or replaced by placeholders.</p>
+          </li>
+        </ol>
+      </section>
+
       <section id="demo" class="demo" data-state="planned">
         <div class="section-head">
           <h2>Approve the program, not forty-two calls.</h2>
@@ -217,6 +246,75 @@ const passing = [
             </div>
           </div>
         </div>
+      </section>
+
+      <section id="reads" class="reads">
+        <div class="section-head">
+          <h2>What the model reads, and what it never sees.</h2>
+          <p>
+            Agents may work with payroll lists, bank details and IDs. The program reads them inside Sekimori's sandbox
+            and computes there; a cloud model only gets the result, and placeholders where it needs to refer to a value.
+          </p>
+        </div>
+
+        <div class="sides">
+          <figure class="side">
+            <figcaption>Example · what the program reads from <code>payroll.list_employees</code></figcaption>
+            <table class="calls records">
+              <thead><tr><th scope="col">Name</th><th scope="col">IBAN</th><th scope="col" class="num">Salary</th></tr></thead>
+              <tbody>
+                <tr><td>Mara Beispiel</td><td>AT61 1904 3002 3457 3201</td><td class="num">52,000</td></tr>
+                <tr><td>Jon Example</td><td>DE89 3704 0044 0532 0130 00</td><td class="num">61,000</td></tr>
+                <tr><td>Lea Muster</td><td>AT48 3200 0000 1234 5864</td><td class="num">68,500</td></tr>
+              </tbody>
+            </table>
+          </figure>
+          <div class="divide" aria-hidden="true"><span class="divide-label">checkpoint</span></div>
+          <figure class="side">
+            <figcaption>What the model receives</figcaption>
+            <table class="calls records">
+              <thead><tr><th scope="col">Name</th><th scope="col">IBAN</th><th scope="col" class="num">Salary</th></tr></thead>
+              <tbody>
+                <tr><td>Mara Beispiel</td><td class="placeholder">⟦bank·b8e2c1⟧</td><td class="num withheld">withheld</td></tr>
+                <tr><td>Jon Example</td><td class="placeholder">⟦bank·8b07ab⟧</td><td class="num withheld">withheld</td></tr>
+                <tr><td>Lea Muster</td><td class="placeholder">⟦bank·4ae118⟧</td><td class="num withheld">withheld</td></tr>
+              </tbody>
+            </table>
+            <p class="result">Average salary in Sales, computed in the sandbox: <strong>56,500</strong></p>
+          </figure>
+        </div>
+
+        <dl class="rule-list">
+          <div class="rule">
+            <dt>Kept back</dt>
+            <dd class="what">
+              Values Sekimori recognises never reach the model as they are: not returned, not renamed, not written into
+              a sentence, not reformatted, not inside an error message.
+            </dd>
+            <dd class="instead">Recognised by: field names, checksummed patterns, and the sources you name.</dd>
+          </div>
+          <div class="rule">
+            <dt>Placeholders</dt>
+            <dd class="what">
+              The agent can still act on a value it never saw. It passes the placeholder on, and Sekimori inserts the real
+              value only for a tool that may receive it.
+            </dd>
+            <dd class="instead">Keeps: an IBAN from payroll out of Slack, unless a grant or your seal allows it.</dd>
+          </div>
+          <div class="rule">
+            <dt>Release seal</dt>
+            <dd class="what">
+              After an agent has read untrusted input, a result computed from confidential data waits for your seal
+              before the model sees it.
+            </dd>
+            <dd class="instead">Stops: the injected program that spells every salary backwards.</dd>
+          </div>
+        </dl>
+        <p class="also">
+          Built in: payroll, bank details, German and Austrian tax and social insurance numbers, EU VAT IDs, health
+          data and credentials. Switch classes off, or add your own fields, patterns and sources. The dashboard counts
+          what was kept back for every request, without ever showing the values.
+        </p>
       </section>
 
       <section id="rules" class="rules">
@@ -301,6 +399,8 @@ const passing = [
               <li>After any untrusted read, no sensitive action runs without a seal or a matching tegata.</li>
               <li>Tools nobody has classified count as untrusted and sensitive. It fails closed.</li>
               <li>Secrets never enter the sandbox.</li>
+              <li>A program cannot return a confidential value Sekimori recognises, whether as it is, renamed, reformatted or inside an error.</li>
+              <li>A confidential value only goes back to the server it came from, unless a reveal grant or your seal allows more.</li>
             </ul>
           </div>
           <div>
@@ -310,6 +410,8 @@ const passing = [
                 Per-value tracking. v1 flags the whole program after one untrusted read; precise tracking arrives with
                 Sekimori's restricted interpreter.
               </li>
+              <li>Recognition by meaning. Confidential data is found by field names, patterns and sources; a salary mentioned in free text is not.</li>
+              <li>Shared platforms. One gateway serves one person; a team gateway for platforms such as Open WebUI comes later.</li>
               <li>A model gateway. Routing and budgets for LLM traffic come later; run it next to LiteLLM today.</li>
               <li>Sekimori Cloud. Approvals in the web and Slack, policy distribution and audit history are the next milestone.</li>
               <li>A hosted runtime. The gateway always runs on your side.</li>
@@ -638,6 +740,84 @@ const passing = [
     max-width: 38rem;
   }
 
+  .route {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--ink);
+  }
+  .route li {
+    position: relative;
+    padding: 1.6rem 1.75rem 0 0;
+  }
+  .route li::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 1px;
+    height: 9px;
+    background: var(--ink);
+  }
+  .route .cp::before {
+    width: 9px;
+    height: 9px;
+    left: -4px;
+    background: var(--beni);
+  }
+  .route h3 {
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+  .route .cp h3 {
+    color: var(--beni-ink);
+  }
+  .route p {
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+    max-width: 18rem;
+  }
+
+  .reads figure {
+    margin: 0;
+  }
+  .reads figcaption code {
+    font-family: inherit;
+    color: var(--ink-2);
+  }
+  .records {
+    margin-top: 0;
+  }
+  .records thead th {
+    padding-top: 0;
+    border-bottom: 1px solid var(--hair);
+  }
+  .records .num {
+    text-align: right;
+    padding-right: 0;
+  }
+  .records .placeholder {
+    color: var(--beni-ink);
+  }
+  .records .withheld {
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+  }
+  .result {
+    margin-top: 1.25rem;
+    color: var(--ink-2);
+  }
+  .result strong {
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .reads .rule-list {
+    margin-top: clamp(3rem, 7vw, 5rem);
+  }
+
   .demo-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
@@ -952,6 +1132,40 @@ const passing = [
     .demo-grid,
     .ledger {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .route {
+      grid-template-columns: minmax(0, 1fr);
+      border-top: 0;
+      border-left: 1px solid var(--ink);
+    }
+    .route li {
+      padding: 0 0 1.75rem 1.5rem;
+    }
+    .route li::before {
+      top: 0.55rem;
+      left: -5px;
+      width: 9px;
+      height: 1px;
+    }
+    .route .cp::before {
+      top: 0.3rem;
+      height: 9px;
+    }
+    .reads .sides {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .reads .side:last-child {
+      padding-left: 0;
+    }
+    .reads .divide {
+      width: auto;
+      height: 1px;
+      margin: 0;
+      background: repeating-linear-gradient(to right, var(--beni) 0 2px, transparent 2px 7px);
+    }
+    .reads .divide-label {
+      writing-mode: horizontal-tb;
+      padding: 0 0.6rem;
     }
     .rule {
       grid-template-columns: minmax(0, 1fr);
